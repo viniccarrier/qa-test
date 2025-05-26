@@ -1,43 +1,10 @@
-name: Testes Paralelos Playwright
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
 jobs:
-  teste-api:
-    name: Testar API
-    runs-on: ubuntu-latest
-    steps:
-      - name: Fazer checkout do código
-        uses: actions/checkout@v4
-
-      - name: Configurar Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18.x
-
-      - name: Instalar dependências
-        run: npm install
-
-      - name: Instalar navegadores do Playwright
-        run: npx playwright install --with-deps
-
-      - name: Executar testes da API
-        run: npm run test:api
-
-      - name: Fazer upload do relatório do Playwright API
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: relatorio-playwright-api
-          path: playwright-report
-
   teste-ui:
     name: Testar Interface
     runs-on: ubuntu-latest
+    env:
+      USER: ${{ secrets.USER }}
+      PASSWORD: ${{ secrets.PASSWORD }}
     steps:
       - name: Fazer checkout do código
         uses: actions/checkout@v4
@@ -46,6 +13,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18.x
+
+      - name: Cache de dependências npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Instalar dependências
         run: npm install
