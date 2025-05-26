@@ -5,8 +5,11 @@
   "main": "index.js",
 "scripts": {
   "test:ui": "playwright test tests/ui --ui",
-  "test:api": "playwright test tests/api"
-},
+  "test:api": "playwright test tests/api",
+  "test": "playwright test",                          
+  "test:report": "playwright show-report"         
+}
+,
 
   "repository": {
     "type": "git",
