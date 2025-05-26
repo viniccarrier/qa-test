@@ -1,7 +1,5 @@
 import { test, expect } from "@playwright/test";
-import * as dotenv from "dotenv";
 
-dotenv.config();
 
 test("Deve logar na plataforma saucedemo com sucesso ao inserir as credenciais de usuário e senha", async ({
   page,
