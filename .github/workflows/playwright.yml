@@ -1,4 +1,4 @@
-name: Playwright Parallel Tests
+name: Testes Paralelos Playwright
 
 on:
   push:
@@ -7,58 +7,58 @@ on:
     branches: [ main ]
 
 jobs:
-  test-api:
-    name: Test API
+  teste-api:
+    name: Testar API
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Fazer checkout do código
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18.x
 
-      - name: Install dependencies
+      - name: Instalar dependências
         run: npm install
 
-      - name: Install Playwright browsers
+      - name: Instalar navegadores do Playwright
         run: npx playwright install --with-deps
 
-      - name: Run API tests
+      - name: Executar testes da API
         run: npm run test:api
 
-      - name: Upload Playwright report API
+      - name: Fazer upload do relatório do Playwright API
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report-api
+          name: relatorio-playwright-api
           path: playwright-report
 
-  test-ui:
-    name: Test UI
+  teste-ui:
+    name: Testar Interface
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Fazer checkout do código
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18.x
 
-      - name: Install dependencies
+      - name: Instalar dependências
         run: npm install
 
-      - name: Install Playwright browsers
+      - name: Instalar navegadores do Playwright
         run: npx playwright install --with-deps
 
-      - name: Run UI tests
+      - name: Executar testes de UI
         run: npm run test:ui
 
-      - name: Upload Playwright report UI
+      - name: Fazer upload do relatório do Playwright UI
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report-ui
+          name: relatorio-playwright-ui
           path: playwright-report

@@ -1,11 +1,18 @@
 import { test, expect } from "@playwright/test";
 
 test("GET Listar usuários e validar dados", async ({ request }) => {
-  const response = await request.get("https://reqres.in/api/users?page=2");
+
+    const BASE_URL = "https://reqres.in/api/users";
+const HEADERS = {
+  "Content-Type": "application/json",
+  "x-api-key": "reqres-free-v1",
+};
+  const response = await request.get(`${BASE_URL}?page=2`, {
+    headers: HEADERS,
+  });
 
   expect(response.status()).toBe(200);
 
-  // Parseando a resposta como JSON
   const responseBody = await response.json();
 
   expect(Array.isArray(responseBody.data)).toBeTruthy();
@@ -20,6 +27,7 @@ test("GET Listar usuários e validar dados", async ({ request }) => {
     expect(emailRegexValidation.test(user.email)).toBeTruthy();
   }
 });
+
 
 test("POST Criar um usuário", async ({ request }) => {
   const BASE_URL = "https://reqres.in/api/users";
