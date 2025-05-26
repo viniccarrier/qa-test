@@ -39,32 +39,32 @@ jobs:
           path: playwright-report
 
   teste-ui:
-    name: Testar Interface
-    runs-on: ubuntu-latest
-    env:
-      USER: ${{ secrets.USER }}
-      PASSWORD: ${{ secrets.PASSWORD }}
-    steps:
-      - name: Fazer checkout do código
-        uses: actions/checkout@v4
+  name: Testar Interface
+  runs-on: ubuntu-latest
+  env:
+    USER: ${{ secrets.USER }}
+    PASSWORD: ${{ secrets.PASSWORD }}
+  steps:
+    - name: Fazer checkout do código
+      uses: actions/checkout@v4
 
-      - name: Configurar Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18.x
+    - name: Configurar Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18.x
 
-      - name: Instalar dependências
-        run: npm install
+    - name: Instalar dependências
+      run: npm install
 
-      - name: Instalar navegadores do Playwright
-        run: npx playwright install --with-deps
+    - name: Instalar navegadores do Playwright
+      run: npx playwright install --with-deps
 
-      - name: Executar testes de UI
-        run: npm run test:ui
+    - name: Executar testes de UI
+      run: npm run test:ui
 
-      - name: Fazer upload do relatório do Playwright UI
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: relatorio-playwright-ui
-          path: playwright-report
+    - name: Fazer upload do relatório do Playwright UI
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: relatorio-playwright-ui
+        path: playwright-report
