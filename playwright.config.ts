@@ -37,14 +37,14 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
     // Descomente se quiser também testar em outros navegadores:
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] },
+    // },
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'] },
+    // },
   ],
 
   // Se tiver um dev server, configure aqui
