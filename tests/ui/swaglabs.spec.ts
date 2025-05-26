@@ -12,7 +12,6 @@ test("Deve logar na plataforma saucedemo com sucesso ao inserir as credenciais d
 
   const password = process.env.PASSWORD;
 
- const tituloProdutos = page.locator('[data-test="title"]');
 
   if (!username || !password) {
     throw new Error(
@@ -25,7 +24,7 @@ test("Deve logar na plataforma saucedemo com sucesso ao inserir as credenciais d
 
   await page.click("#login-button");
 
-  await expect(tituloProdutos).toBeVisible();
+await expect(page.getByText('Products')).toBeVisible({ timeout: 10000 });
 });
 
 test("Deve apresentar mensagem de error ao tentar logar com credenciais inválidas", async ({
@@ -56,7 +55,6 @@ test("Adicionar 3 itens ao carrinho na plataforma Saudecemo", async ({
 
   const username = process.env.USER;
   const password = process.env.PASSWORD;
- const tituloProdutos = page.locator('[data-test="title"]');
   const cartBadge = page.locator(".shopping_cart_badge");
   const addItemsCart = [
     "add-to-cart-sauce-labs-backpack",
@@ -74,7 +72,7 @@ test("Adicionar 3 itens ao carrinho na plataforma Saudecemo", async ({
   await page.fill("#password", password);
   await page.click("#login-button");
 
-  await expect(tituloProdutos).toBeVisible();
+await expect(page.getByText('Products')).toBeVisible({ timeout: 10000 });
 
   for (const item of addItemsCart) {
     await page.click(`[data-test=${item}]`);
@@ -90,7 +88,6 @@ test("Remover 2 itens do carrinho na plataforma Saudecemo", async ({
 
   const username = process.env.USER;
   const password = process.env.PASSWORD;
- const tituloProdutos = page.locator('[data-test="title"]');
   const cartBadge = page.locator(".shopping_cart_badge");
   const addItemsCart = [
     "add-to-cart-sauce-labs-backpack",
@@ -113,7 +110,7 @@ test("Remover 2 itens do carrinho na plataforma Saudecemo", async ({
   await page.fill("#password", password);
   await page.click("#login-button");
 
-  await expect(tituloProdutos).toBeVisible();
+await expect(page.getByText('Products')).toBeVisible({ timeout: 10000 });
 
   for (const item of addItemsCart) {
     await page.click(`[data-test=${item}]`);
@@ -135,7 +132,6 @@ test("Validar produtos  restantes na plataforma Saudecemo", async ({
 
   const username = process.env.USER;
   const password = process.env.PASSWORD;
- const tituloProdutos = page.locator('[data-test="title"]');
   const cartBadge = page.locator(".shopping_cart_badge");
   const addItemsCart = [
     "add-to-cart-sauce-labs-backpack",
@@ -158,7 +154,7 @@ test("Validar produtos  restantes na plataforma Saudecemo", async ({
   await page.fill("#password", password);
   await page.click("#login-button");
 
-  await expect(tituloProdutos).toBeVisible();
+await expect(page.getByText('Products')).toBeVisible({ timeout: 10000 });
 
   for (const item of addItemsCart) {
     await page.click(`[data-test=${item}]`);
@@ -210,7 +206,6 @@ test("Validar  mensagens de erros  campos não preenchidos nome, endereço e etc
 
   const username = process.env.USER;
   const password = process.env.PASSWORD;
- const tituloProdutos = page.locator('[data-test="title"]');
   const cartBadge = page.locator(".shopping_cart_badge");
   const addItemsCart = [
     "add-to-cart-sauce-labs-backpack",
@@ -237,7 +232,7 @@ test("Validar  mensagens de erros  campos não preenchidos nome, endereço e etc
   await page.fill("#password", password);
   await page.click("#login-button");
 
-  await expect(tituloProdutos).toBeVisible();
+await expect(page.getByText('Products')).toBeVisible({ timeout: 10000 });
 
   for (const item of addItemsCart) {
     await page.click(`[data-test=${item}]`);
