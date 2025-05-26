@@ -38,9 +38,6 @@ jobs:
   teste-ui:
     name: Testar Interface
     runs-on: ubuntu-latest
-    env:                      # <- Passa as variáveis de ambiente do secrets aqui
-      USER: ${{ secrets.USER }}
-      PASSWORD: ${{ secrets.PASSWORD }}
     steps:
       - name: Fazer checkout do código
         uses: actions/checkout@v4

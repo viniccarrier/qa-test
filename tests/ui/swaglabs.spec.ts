@@ -1,27 +1,12 @@
 import { test, expect } from "@playwright/test";
 
-import * as dotenv from "dotenv";
-
-dotenv.config();
-
-
-  const username = process.env.USER;
-
-  const password = process.env.PASSWORD;
-
-
 test("Deve logar na plataforma saucedemo com sucesso ao inserir as credenciais de usuário e senha", async ({
   page,
 }) => {
   await page.goto("https://saucedemo.com/");
+  const username = "standard_user";
 
-
-
-  if (!username || !password) {
-    throw new Error(
-      "Usuário ou Senha não definidos no arquivo de configuração .env"
-    );
-  }
+  const password = "secret_sauce";
 
   await page.fill("#user-name", username);
   await page.fill("#password", password);
@@ -57,20 +42,16 @@ test("Adicionar 3 itens ao carrinho na plataforma Saudecemo", async ({
 }) => {
   await page.goto("https://saucedemo.com/");
 
-  const username = process.env.USER;
-  const password = process.env.PASSWORD;
+  const username = "standard_user";
+
+  const password = "secret_sauce";
+
   const cartBadge = page.locator(".shopping_cart_badge");
   const addItemsCart = [
     "add-to-cart-sauce-labs-backpack",
     "add-to-cart-sauce-labs-bike-light",
     "add-to-cart-sauce-labs-bolt-t-shirt",
   ];
-
-  if (!username || !password) {
-    throw new Error(
-      "Usuário ou Senha não definidos no arquivo de configuração .env"
-    );
-  }
 
   await page.fill("#user-name", username);
   await page.fill("#password", password);
@@ -90,8 +71,10 @@ test("Remover 2 itens do carrinho na plataforma Saudecemo", async ({
 }) => {
   await page.goto("https://saucedemo.com/");
 
-  const username = process.env.USER;
-  const password = process.env.PASSWORD;
+  const username = "standard_user";
+
+  const password = "secret_sauce";
+
   const cartBadge = page.locator(".shopping_cart_badge");
   const addItemsCart = [
     "add-to-cart-sauce-labs-backpack",
@@ -103,12 +86,6 @@ test("Remover 2 itens do carrinho na plataforma Saudecemo", async ({
     "remove-sauce-labs-backpack",
     "remove-sauce-labs-bike-light",
   ];
-
-  if (!username || !password) {
-    throw new Error(
-      "Usuário ou Senha não definidos no arquivo de configuração .env"
-    );
-  }
 
   await page.fill("#user-name", username);
   await page.fill("#password", password);
@@ -134,8 +111,10 @@ test("Validar produtos  restantes na plataforma Saudecemo", async ({
 }) => {
   await page.goto("https://saucedemo.com/");
 
-  const username = process.env.USER;
-  const password = process.env.PASSWORD;
+  const username = "standard_user";
+
+  const password = "secret_sauce";
+
   const cartBadge = page.locator(".shopping_cart_badge");
   const addItemsCart = [
     "add-to-cart-sauce-labs-backpack",
@@ -147,12 +126,6 @@ test("Validar produtos  restantes na plataforma Saudecemo", async ({
     "remove-sauce-labs-backpack",
     "remove-sauce-labs-bike-light",
   ];
-
-  if (!username || !password) {
-    throw new Error(
-      "Usuário ou Senha não definidos no arquivo de configuração .env"
-    );
-  }
 
   await page.fill("#user-name", username);
   await page.fill("#password", password);
@@ -207,9 +180,10 @@ test("Validar  mensagens de erros  campos não preenchidos nome, endereço e etc
   page,
 }) => {
   await page.goto("https://saucedemo.com/");
+  const username = "standard_user";
 
-  const username = process.env.USER;
-  const password = process.env.PASSWORD;
+  const password = "secret_sauce";
+
   const cartBadge = page.locator(".shopping_cart_badge");
   const addItemsCart = [
     "add-to-cart-sauce-labs-backpack",
@@ -225,12 +199,6 @@ test("Validar  mensagens de erros  campos não preenchidos nome, endereço e etc
   const firstName = "Mavis";
   const lastName = "Pantera";
   const zipCode = "36000000";
-
-  if (!username || !password) {
-    throw new Error(
-      "Usuário ou Senha não definidos no arquivo de configuração .env"
-    );
-  }
 
   await page.fill("#user-name", username);
   await page.fill("#password", password);
