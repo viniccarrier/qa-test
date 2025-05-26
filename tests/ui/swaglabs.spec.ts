@@ -1,14 +1,21 @@
 import { test, expect } from "@playwright/test";
 
+import * as dotenv from "dotenv";
+
+dotenv.config();
+
+
+  const username = process.env.USER;
+
+  const password = process.env.PASSWORD;
+
 
 test("Deve logar na plataforma saucedemo com sucesso ao inserir as credenciais de usuário e senha", async ({
   page,
 }) => {
   await page.goto("https://saucedemo.com/");
 
-  const username = process.env.USER;
 
-  const password = process.env.PASSWORD;
 
   if (!username || !password) {
     throw new Error(
