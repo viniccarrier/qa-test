@@ -12,7 +12,6 @@ test("Deve logar na plataforma saucedemo com sucesso ao inserir as credenciais d
 
   const password = process.env.PASSWORD;
 
-
   if (!username || !password) {
     throw new Error(
       "Usuário ou Senha não definidos no arquivo de configuração .env"
@@ -24,7 +23,7 @@ test("Deve logar na plataforma saucedemo com sucesso ao inserir as credenciais d
 
   await page.click("#login-button");
 
-await expect(page.getByText('Products')).toBeVisible({ timeout: 10000 });
+  await expect(page.locator(".title")).toHaveText("Products");
 });
 
 test("Deve apresentar mensagem de error ao tentar logar com credenciais inválidas", async ({
@@ -72,7 +71,7 @@ test("Adicionar 3 itens ao carrinho na plataforma Saudecemo", async ({
   await page.fill("#password", password);
   await page.click("#login-button");
 
-await expect(page.getByText('Products')).toBeVisible({ timeout: 10000 });
+  await expect(page.locator(".title")).toHaveText("Products");
 
   for (const item of addItemsCart) {
     await page.click(`[data-test=${item}]`);
@@ -110,7 +109,7 @@ test("Remover 2 itens do carrinho na plataforma Saudecemo", async ({
   await page.fill("#password", password);
   await page.click("#login-button");
 
-await expect(page.getByText('Products')).toBeVisible({ timeout: 10000 });
+  await expect(page.locator(".title")).toHaveText("Products");
 
   for (const item of addItemsCart) {
     await page.click(`[data-test=${item}]`);
@@ -154,7 +153,7 @@ test("Validar produtos  restantes na plataforma Saudecemo", async ({
   await page.fill("#password", password);
   await page.click("#login-button");
 
-await expect(page.getByText('Products')).toBeVisible({ timeout: 10000 });
+  await expect(page.locator(".title")).toHaveText("Products");
 
   for (const item of addItemsCart) {
     await page.click(`[data-test=${item}]`);
@@ -232,7 +231,7 @@ test("Validar  mensagens de erros  campos não preenchidos nome, endereço e etc
   await page.fill("#password", password);
   await page.click("#login-button");
 
-await expect(page.getByText('Products')).toBeVisible({ timeout: 10000 });
+  await expect(page.locator(".title")).toHaveText("Products");
 
   for (const item of addItemsCart) {
     await page.click(`[data-test=${item}]`);
